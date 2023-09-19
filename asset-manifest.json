@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/august-writing/static/css/main.0326e140.css",
+    "main.js": "/august-writing/static/js/main.e8f9fe44.js",
+    "static/js/787.92bd97ae.chunk.js": "/august-writing/static/js/787.92bd97ae.chunk.js",
+    "index.html": "/august-writing/index.html",
+    "main.0326e140.css.map": "/august-writing/static/css/main.0326e140.css.map",
+    "main.e8f9fe44.js.map": "/august-writing/static/js/main.e8f9fe44.js.map",
+    "787.92bd97ae.chunk.js.map": "/august-writing/static/js/787.92bd97ae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0326e140.css",
+    "static/js/main.e8f9fe44.js"
+  ]
+}
