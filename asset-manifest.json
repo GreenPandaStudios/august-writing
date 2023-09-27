@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/august-writing/static/css/main.fc98b68d.css",
-    "main.js": "/august-writing/static/js/main.df70ec4a.js",
+    "main.css": "/august-writing/static/css/main.d7a2dcae.css",
+    "main.js": "/august-writing/static/js/main.d71cb5b8.js",
     "static/js/787.92bd97ae.chunk.js": "/august-writing/static/js/787.92bd97ae.chunk.js",
     "index.html": "/august-writing/index.html",
-    "main.fc98b68d.css.map": "/august-writing/static/css/main.fc98b68d.css.map",
-    "main.df70ec4a.js.map": "/august-writing/static/js/main.df70ec4a.js.map",
+    "main.d7a2dcae.css.map": "/august-writing/static/css/main.d7a2dcae.css.map",
+    "main.d71cb5b8.js.map": "/august-writing/static/js/main.d71cb5b8.js.map",
     "787.92bd97ae.chunk.js.map": "/august-writing/static/js/787.92bd97ae.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fc98b68d.css",
-    "static/js/main.df70ec4a.js"
+    "static/css/main.d7a2dcae.css",
+    "static/js/main.d71cb5b8.js"
   ]
 }
