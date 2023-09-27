@@ -1,0 +1,20 @@
+@import "./poems";
+@import "./poemWheel";
+@import "./searchBar";
+
+html {
+    background-color: #060607;
+}
+
+
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,27 @@
+.poem {
+    font-family: "Calibri", sans-serif;
+    color: rgb(225, 225, 225);
+    text-align: center;
+    margin: auto;
+    width: fit-content;
+    min-height: 400px;
+    margin-bottom: 5rem;
+    .text-wrapper {
+        p {
+            font-size: 18px;
+            text-align: left;
+            font-weight: 100;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            margin-left: .75rem;
+        }
+        h1 {
+            font-size: 36px;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+    }
+  
+}
+
+

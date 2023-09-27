@@ -1,0 +1,31 @@
+.PoemWheel {
+    max-height: 200px;
+    overflow-y: auto;
+    margin: auto;
+    padding: .5rem;
+    width: 75%;
+    border-style: solid;
+    border-color: white;
+    border-left: none;
+    border-right: none;
+    scrollbar-color: white transparent;
+    scrollbar-width: none;
+    scroll-snap-align: center;
+    button {
+        margin: auto;
+        margin-top: 2rem;
+        width: 75%;
+        font-size: 14px;
+        background-color: #060607;
+        border-radius: .25rem;
+        border-color: white;
+        border-left:none;
+        border-right:none;
+        border-top:none;
+        color: white;
+        &.selected {
+            border-color: greenyellow;
+            color: greenyellow;
+        }
+    }
+}
