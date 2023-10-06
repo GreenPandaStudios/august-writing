@@ -9,17 +9,30 @@
   margin-bottom: 5rem;
 }
 .poem .text-wrapper p {
-  font-size: 18px;
+  font-size: 14px;
   text-align: left;
-  font-weight: 100;
   margin-top: 0;
   margin-bottom: 0.5rem;
   margin-left: 0.75rem;
 }
 .poem .text-wrapper h1 {
-  font-size: 36px;
+  font-size: 20px;
   text-align: left;
   margin-bottom: 2rem;
+}
+
+button.shareButton {
+  text-align: left;
+  margin-top: 2rem;
+  width: 100%;
+  font-size: 14px;
+  background-color: #060607;
+  border: none;
+  color: white;
+}
+button.shareButton:hover {
+  border-color: greenyellow;
+  color: greenyellow;
 }
 
 .PoemWheel {
@@ -107,6 +120,7 @@
 
 html {
   background-color: #060607;
+  font-family: "Calibri", sans-serif;
 }
 
 .row {
@@ -118,4 +132,20 @@ html {
   width: 50%;
   display: flex;
   flex-direction: column;
+}
+
+a {
+  font-family: "Calibri", sans-serif;
+  text-align: center;
+  color: greenyellow;
+  margin: auto;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  font-size: 24px;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  color: transparent;
 }/*# sourceMappingURL=index.css.map */

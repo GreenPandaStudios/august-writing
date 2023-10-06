@@ -43,6 +43,13 @@ export const PoetryWheel: React.FC = () => {
     <div>
       <div className="row">{!gettingPoem && <Poem {...poem} />}</div>
       <SearchBar onSearch={(s) => setFilter(s.toLowerCase().trim())} />
+      {filter.startsWith("gou") && (
+        <div className="row">
+          <a href="https://greenpandastudios.github.io/cool-app-4000">
+            Gounyvid Part 3
+          </a>
+        </div>
+      )}
       <div className="row">
         {poemArray.length > 0 && (
           <div className="PoemWheel">
