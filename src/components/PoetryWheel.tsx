@@ -3,16 +3,23 @@ import { useRequest } from "../api";
 import { Poem } from "./Poem";
 import { PoemType } from "../types";
 import { SearchBar } from "./SearchBar";
-interface Json {
-  [x: string]: string;
-}
 export const PoetryWheel: React.FC = () => {
-  const [fetching, searchMap] = useRequest<Json>(
+  const [fetching, searchMap] = useRequest<{
+    [x: string]: string;
+  }>(
     "https://greenpandastudios.github.io/august-poetry-api/searchMap.json",
-    { apples: "a" },
+    { loading: "loading..." },
+    [4]
+  );
+  const [fetchingBodyMap, bodyMap] = useRequest<{
+    [x: string]: string[];
+  }>(
+    "https://greenpandastudios.github.io/august-poetry-api/bodySearchMap.json",
+    { loading: [] },
     [4]
   );
   const [filter, setFilter] = useState<string>("");
+  
   const poemArray = useMemo(() => {
     let arr: Array<{ key: string; title: string }> = [];
     Object.keys(searchMap).forEach((key) => {
@@ -20,12 +27,18 @@ export const PoetryWheel: React.FC = () => {
         if (searchMap[key].trim().toLowerCase().includes(filter)) {
           arr.push({ key: key, title: searchMap[key] });
         }
+        bodyMap[key].forEach(element => {
+          if (element.trim().toLowerCase().includes(filter)) {
+            arr.push({ key: key, title: searchMap[key] });
+          }
+        });
+
       } else {
         arr.push({ key: key, title: searchMap[key] });
       }
     });
     return arr.sort((a, b) => (a.title > b.title ? 1 : 0));
-  }, [searchMap, filter]);
+  }, [searchMap, filter, bodyMap]);
 
   const [currentPoem, setCurPoem] = useState<string>(poemArray[0]?.key || "");
 
@@ -35,7 +48,7 @@ export const PoetryWheel: React.FC = () => {
     [currentPoem]
   );
 
-  if (fetching) {
+  if (fetching || fetchingBodyMap) {
     return <></>;
   }
 
