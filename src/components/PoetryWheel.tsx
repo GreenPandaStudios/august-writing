@@ -3,6 +3,7 @@ import { useRequest } from "../api";
 import { Poem } from "./Poem";
 import { PoemType } from "../types";
 import { SearchBar } from "./SearchBar";
+import { HighlightedText } from "./HighlightedText";
 export const PoetryWheel: React.FC = () => {
   const [fetching, searchMap] = useRequest<{
     [x: string]: string;
@@ -21,15 +22,18 @@ export const PoetryWheel: React.FC = () => {
   const [filter, setFilter] = useState<string>("");
   
   const poemArray = useMemo(() => {
-    let arr: Array<{ key: string; title: string }> = [];
+    let arr: Array<{ key: string; title: string; line?: string }> = [];
+    let trackMap: {[title:string] : boolean} = {};
     Object.keys(searchMap).forEach((key) => {
       if (filter !== "") {
-        if (searchMap[key].trim().toLowerCase().includes(filter)) {
+        if (searchMap[key].trim().toLowerCase().includes(filter) && !trackMap[key]) {
           arr.push({ key: key, title: searchMap[key] });
+          trackMap[key] = true;
         }
         bodyMap[key].forEach(element => {
-          if (element.trim().toLowerCase().includes(filter)) {
-            arr.push({ key: key, title: searchMap[key] });
+          if (element.trim().toLowerCase().includes(filter) && !trackMap[key]) {
+            arr.push({ key: key, title: searchMap[key],line: element });
+            trackMap[key] = true;
           }
         });
 
@@ -67,6 +71,7 @@ export const PoetryWheel: React.FC = () => {
                 }}
               >
                 {sMap.title}
+                <HighlightedText text={sMap.line} highlight={filter}/>
               </button>
             ))}
           </div>
