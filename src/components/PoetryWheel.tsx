@@ -3,29 +3,46 @@ import { useRequest } from "../api";
 import { Poem } from "./Poem";
 import { PoemType } from "../types";
 import { SearchBar } from "./SearchBar";
-interface Json {
-  [x: string]: string;
-}
+import { HighlightedText } from "./HighlightedText";
 export const PoetryWheel: React.FC = () => {
-  const [fetching, searchMap] = useRequest<Json>(
+  const [fetching, searchMap] = useRequest<{
+    [x: string]: string;
+  }>(
     "https://greenpandastudios.github.io/august-poetry-api/searchMap.json",
-    { apples: "a" },
+    { loading: "loading..." },
+    [4]
+  );
+  const [fetchingBodyMap, bodyMap] = useRequest<{
+    [x: string]: string[];
+  }>(
+    "https://greenpandastudios.github.io/august-poetry-api/bodySearchMap.json",
+    { loading: [] },
     [4]
   );
   const [filter, setFilter] = useState<string>("");
+  
   const poemArray = useMemo(() => {
-    let arr: Array<{ key: string; title: string }> = [];
+    let arr: Array<{ key: string; title: string; line?: string }> = [];
+    let trackMap: {[title:string] : boolean} = {};
     Object.keys(searchMap).forEach((key) => {
       if (filter !== "") {
-        if (searchMap[key].trim().toLowerCase().includes(filter)) {
+        if (searchMap[key].trim().toLowerCase().includes(filter) && !trackMap[key]) {
           arr.push({ key: key, title: searchMap[key] });
+          trackMap[key] = true;
         }
+        bodyMap[key].forEach(element => {
+          if (element.trim().toLowerCase().includes(filter) && !trackMap[key]) {
+            arr.push({ key: key, title: searchMap[key],line: element });
+            trackMap[key] = true;
+          }
+        });
+
       } else {
         arr.push({ key: key, title: searchMap[key] });
       }
     });
     return arr.sort((a, b) => (a.title > b.title ? 1 : 0));
-  }, [searchMap, filter]);
+  }, [searchMap, filter, bodyMap]);
 
   const [currentPoem, setCurPoem] = useState<string>(poemArray[0]?.key || "");
 
@@ -35,7 +52,7 @@ export const PoetryWheel: React.FC = () => {
     [currentPoem]
   );
 
-  if (fetching) {
+  if (fetching || fetchingBodyMap) {
     return <></>;
   }
 
@@ -61,6 +78,7 @@ export const PoetryWheel: React.FC = () => {
                 }}
               >
                 {sMap.title}
+                <HighlightedText text={sMap.line} highlight={filter}/>
               </button>
             ))}
           </div>
