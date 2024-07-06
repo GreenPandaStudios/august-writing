@@ -31,7 +31,7 @@ export const PoetryWheel: React.FC = () => {
           trackMap[key] = true;
         }
         bodyMap[key].forEach(element => {
-          if (element.trim().toLowerCase().includes(filter) && !trackMap[key]) {
+          if (element.toLowerCase().includes(filter) && !trackMap[key]) {
             arr.push({ key: key, title: searchMap[key],line: element });
             trackMap[key] = true;
           }
