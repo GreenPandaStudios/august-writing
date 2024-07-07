@@ -42,7 +42,7 @@ export const Poem: React.FC<PoemType> = (props: PoemType) => {
         <div className="text-wrapper" ref={imageRef}>
           <h1>{props.title}</h1>
           {props.body.map((line) => {
-            return line === "" ? <br></br> : <p>{line}</p>;
+            return line === "" ? <br></br> : <pre>{line}</pre>;
           })}
         </div>
         <button className="shareButton" onClick={() => handleShare()}>

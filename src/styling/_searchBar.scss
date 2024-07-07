@@ -1,10 +1,12 @@
 .search-box{
   width: fit-content;
   height: fit-content;
+  font-family: monospace;
   position: relative;
 }
 .input-search{
   height: 25px;
+  font-family: monospace;
   width: 62%;
   border-style: solid;
   padding: 10px;
@@ -26,12 +28,14 @@
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: 100;
+  font-family: monospace;
 }
 
 .input-search:focus{
   width: 65%;
   height: 50px;
   text-align: left;
+  font-family: monospace;
   border-radius: 0px;
   border-style: none;
   background-color: transparent;

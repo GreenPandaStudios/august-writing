@@ -1,5 +1,5 @@
 .poem {
-    font-family: "Calibri", sans-serif;
+    font-family: "monospace";
     color: rgb(225, 225, 225);
     text-align: center;
     margin: auto;
@@ -7,7 +7,7 @@
     min-height: 400px;
     margin-bottom: 5rem;
     .text-wrapper {
-        p {
+        pre {
             font-size: 14px;
             text-align: left;
             margin-top: 0;

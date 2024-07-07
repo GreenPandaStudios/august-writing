@@ -1,5 +1,5 @@
 .poem {
-  font-family: "Calibri", sans-serif;
+  font-family: "monospace";
   color: rgb(225, 225, 225);
   text-align: center;
   margin: auto;
@@ -8,7 +8,7 @@
   min-height: 400px;
   margin-bottom: 5rem;
 }
-.poem .text-wrapper p {
+.poem .text-wrapper pre {
   font-size: 14px;
   text-align: left;
   margin-top: 0;
@@ -72,11 +72,13 @@ button.shareButton:hover {
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
+  font-family: monospace;
   position: relative;
 }
 
 .input-search {
   height: 25px;
+  font-family: monospace;
   width: 62%;
   border-style: solid;
   padding: 10px;
@@ -98,6 +100,7 @@ button.shareButton:hover {
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: 100;
+  font-family: monospace;
 }
 
 .input-search::placeholder {
@@ -105,12 +108,14 @@ button.shareButton:hover {
   font-size: 18px;
   letter-spacing: 2px;
   font-weight: 100;
+  font-family: monospace;
 }
 
 .input-search:focus {
   width: 65%;
   height: 50px;
   text-align: left;
+  font-family: monospace;
   border-radius: 0px;
   border-style: none;
   background-color: transparent;
