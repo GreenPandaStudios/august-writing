@@ -15,6 +15,5 @@ export function useRequest<TResponseData>(
       .catch(() => setData(defaultData))
       .finally(() => setFetching(false));
   }, [...deps]);
-  console.log(data);
   return [fetching, data];
 }

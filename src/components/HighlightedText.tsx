@@ -4,8 +4,6 @@ export const HighlightedText: React.FC<{text?: string, highlight: string}> = (pr
   
 
     const dString = props.text ? props.text.replaceAll(new RegExp(props.highlight,"ig"),props.highlight.toUpperCase()) : ""
-  
-    console.log(dString);
    if (props.text === undefined) {
     return <></>;
    }

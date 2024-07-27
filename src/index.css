@@ -7,6 +7,7 @@
   width: fit-content;
   min-height: 400px;
   margin-bottom: 5rem;
+  background-color: #060607;
 }
 .poem .text-wrapper pre {
   font-size: 14px;
@@ -20,27 +21,31 @@
   text-align: left;
   margin-bottom: 2rem;
 }
-
-button.shareButton {
-  text-align: left;
-  margin-top: 2rem;
+.poem div.shareWrapper {
+  display: "flex";
   width: 100%;
+  flex-direction: column;
+  text-align: left;
+}
+.poem div.shareWrapper button.shareButton {
+  margin-top: 2rem;
   font-size: 14px;
   background-color: #060607;
   border: none;
   color: white;
 }
-button.shareButton:hover {
+.poem div.shareWrapper button.shareButton:hover {
   border-color: greenyellow;
   color: greenyellow;
 }
 
 .PoemWheel {
   max-height: 200px;
+  max-width: 500PX;
+  bottom: 0;
   overflow-y: auto;
   margin: auto;
   padding: 0.5rem;
-  width: 75%;
   border-style: solid;
   border-color: white;
   border-left: none;
@@ -126,6 +131,8 @@ button.shareButton:hover {
 html {
   background-color: #060607;
   font-family: "Calibri", sans-serif;
+  max-width: 800px;
+  margin: auto;
 }
 
 .row {

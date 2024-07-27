@@ -1,10 +1,17 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRequest } from "../api";
 import { Poem } from "./Poem";
 import { PoemType } from "../types";
 import { SearchBar } from "./SearchBar";
 import { HighlightedText } from "./HighlightedText";
+import qs from "qs";
+
+
+
 export const PoetryWheel: React.FC = () => {
+
+  const poemQsp = qs.parse(window.location.href.split("?")[1] ?? "")["poem"]?.toString();
+
   const [fetching, searchMap] = useRequest<{
     [x: string]: string;
   }>(
@@ -21,6 +28,9 @@ export const PoetryWheel: React.FC = () => {
   );
   const [filter, setFilter] = useState<string>("");
   
+
+
+
   const poemArray = useMemo(() => {
     let arr: Array<{ key: string; title: string; line?: string }> = [];
     let trackMap: {[title:string] : boolean} = {};
@@ -45,6 +55,11 @@ export const PoetryWheel: React.FC = () => {
   }, [searchMap, filter, bodyMap]);
 
   const [currentPoem, setCurPoem] = useState<string>(poemArray[0]?.key || "");
+  useEffect(()=>{
+    if (poemQsp !== undefined) {
+      setCurPoem(poemQsp + ".json");
+    }
+  },[setCurPoem,poemQsp])
 
   const [gettingPoem, poem] = useRequest<PoemType>(
     "https://greenpandastudios.github.io/august-poetry-api/data/" + currentPoem,
@@ -58,7 +73,7 @@ export const PoetryWheel: React.FC = () => {
 
   return (
     <div>
-      <div className="row">{!gettingPoem && <Poem {...poem} />}</div>
+      <div className="row">{!gettingPoem && <Poem {...poem} qspName={currentPoem.split(".")[0]} />}</div>
       <SearchBar onSearch={(s) => setFilter(s.toLowerCase().trim())} />
       {filter.startsWith("gou") && (
         <div className="row">
@@ -70,8 +85,8 @@ export const PoetryWheel: React.FC = () => {
       <div className="row">
         {poemArray.length > 0 && (
           <div className="PoemWheel">
-            {poemArray.map((sMap) => (
-              <button
+            {poemArray.map((sMap, index) => (
+              <button key={index + "-button"}
                 className={sMap.key === currentPoem ? "selected" : ""}
                 onClick={() => {
                   setCurPoem(sMap.key);

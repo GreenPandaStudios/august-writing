@@ -1,9 +1,10 @@
 .PoemWheel {
     max-height: 200px;
+    max-width: 500PX;
+    bottom: 0;
     overflow-y: auto;
     margin: auto;
     padding: .5rem;
-    width: 75%;
     border-style: solid;
     border-color: white;
     border-left: none;

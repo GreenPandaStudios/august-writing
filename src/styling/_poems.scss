@@ -6,6 +6,7 @@
     width: fit-content;
     min-height: 400px;
     margin-bottom: 5rem;
+    background-color: #060607;
     .text-wrapper {
         pre {
             font-size: 14px;
@@ -20,21 +21,29 @@
             margin-bottom: 2rem;
         }
     }
+
+    div.shareWrapper {
+        display: "flex";
+        width: 100%;
+        flex-direction: column;
+        text-align: left;
+        button.shareButton {
+
+            margin-top: 2rem;
+             font-size: 14px;
+             background-color: #060607;
+             border: none;
+             color: white;
+             &:hover {
+                 border-color: greenyellow;
+                 color: greenyellow;
+             }
+         }
+    }
   
 }
 
-button.shareButton {
-   text-align: left;
-   margin-top: 2rem;
-    width: 100%;
-    font-size: 14px;
-    background-color: #060607;
-    border: none;
-    color: white;
-    &:hover {
-        border-color: greenyellow;
-        color: greenyellow;
-    }
-}
+
+
 
 
