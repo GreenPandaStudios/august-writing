@@ -3,7 +3,7 @@ name: Builds the gh-pages site on push to master
 on:
   push:
     branches:
-      - maaster
+      - master
 
 jobs:
   build:
