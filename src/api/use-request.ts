@@ -14,6 +14,6 @@ export function useRequest<TResponseData>(
       .then((rDdata) => setData(rDdata))
       .catch(() => setData(defaultData))
       .finally(() => setFetching(false));
-  }, [...deps, defaultData, requestUrl]);
+  }, [...deps]);
   return [fetching, data];
 }
