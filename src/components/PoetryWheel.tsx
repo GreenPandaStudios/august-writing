@@ -10,8 +10,6 @@ import qs from "qs";
 
 export const PoetryWheel: React.FC = () => {
 
-  const poemQsp = qs.parse(window.location.href.split("?")[1] ?? "")["poem"]?.toString();
-
   const [fetching, searchMap] = useRequest<{
     [x: string]: string;
   }>(
@@ -55,11 +53,19 @@ export const PoetryWheel: React.FC = () => {
   }, [searchMap, filter, bodyMap]);
 
   const [currentPoem, setCurPoem] = useState<string>(poemArray[0]?.key || "");
+ 
   useEffect(()=>{
+
+    if (poemArray.length === 0) {
+      return;
+    }
+
+    const poemQsp = qs.parse(window.location.href.split("?")[1] ?? "")["poem"]?.toString();
     if (poemQsp !== undefined) {
       setCurPoem(poemQsp + ".json");
     }
-  },[setCurPoem,poemQsp])
+
+  },[setCurPoem])
 
   const [gettingPoem, poem] = useRequest<PoemType>(
     "https://greenpandastudios.github.io/august-poetry-api/data/" + currentPoem,
