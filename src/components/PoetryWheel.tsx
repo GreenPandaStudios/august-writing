@@ -52,7 +52,7 @@ export const PoetryWheel: React.FC = () => {
     return arr.sort((a, b) => (a.title > b.title ? 1 : 0));
   }, [searchMap, filter, bodyMap]);
 
-  const [currentPoem, setCurPoem] = useState<string>(poemArray[0]?.key || "");
+  const [currentPoem, setCurPoem] = useState<string>("");
  
   useEffect(()=>{
 
