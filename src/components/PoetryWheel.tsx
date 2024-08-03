@@ -65,10 +65,19 @@ export const PoetryWheel: React.FC = () => {
       setCurPoem(poemQsp + ".json");
     }
 
-  },[setCurPoem])
+  },[setCurPoem,poemArray.length])
+
+  const poemUrl = useMemo(()=>
+    {
+      if (currentPoem === "") {
+        return "";
+      }
+      return "https://greenpandastudios.github.io/august-poetry-api/data/" + currentPoem;
+}
+,[currentPoem]);
 
   const [gettingPoem, poem] = useRequest<PoemType>(
-    "https://greenpandastudios.github.io/august-poetry-api/data/" + currentPoem,
+    poemUrl,
     { title: "", body: [] },
     [currentPoem]
   );

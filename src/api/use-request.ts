@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { request } from "./request";
 
 export function useRequest<TResponseData>(
@@ -14,6 +14,6 @@ export function useRequest<TResponseData>(
       .then((rDdata) => setData(rDdata))
       .catch(() => setData(defaultData))
       .finally(() => setFetching(false));
-  }, [...deps, setData, setFetching]);
+  }, [...deps, defaultData, requestUrl]);
   return [fetching, data];
 }
