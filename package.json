@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "add-domain": "echo \"poetry.augustmiller.info\" > build/CNAME",
-    "deploy": "npm run add-domain && gh-pages -d build -u \"github-actions-bot <support+actions@github.com>\"",
+    "deploy": "npm run add-domain && gh-pages -d build < \"Github Avtions\"",
     "bd": "npm run build && npm run deploy"
   },
   "eslintConfig": {
