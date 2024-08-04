@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "add-domain": "echo \"poetry.augustmiller.info\" > build/CNAME",
     "deploy": "npm run add-domain && echo \"Github Actions\" > username && gh-pages -d build < username && rm username",
-    "bd": "npm run build && npm run deploy"
+    "bd": "npm run build && npm run deploy",
+    "commit-all": "git add . && git commit -m \"updates\" && git push"
   },
   "eslintConfig": {
     "extends": [
