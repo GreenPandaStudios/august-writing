@@ -9,6 +9,9 @@
     .image-capture-wrapper {
         padding: 40px;
         background-color: transparent;
+        @media (max-width: 768px) {
+            padding: 10px; // Minimal padding for mobile capture
+        }
     }
 
     .paper-page {
@@ -18,10 +21,17 @@
         position: relative;
         border: 1px solid rgba(0,0,0,0.015);
         margin: auto;
+        box-sizing: border-box;
+        width: 100%;
         
         box-shadow: 
             0 1px 2px rgba(0,0,0,0.02), 
             0 4px 8px rgba(0,0,0,0.02);
+
+        @media (max-width: 768px) {
+            padding: 2.5rem 1.5rem; // Much less padding on mobile
+            transform: rotate(0deg); // Remove rotation for better fit
+        }
 
         &::before {
             content: "";
@@ -34,6 +44,9 @@
             z-index: -1;
             box-shadow: 0 1px 1px rgba(0,0,0,0.04);
             border-radius: 2px;
+            @media (max-width: 768px) {
+                display: none; // Simplify for mobile
+            }
         }
 
         &::after {
@@ -50,8 +63,6 @@
             mix-blend-mode: multiply;
             border-radius: inherit;
         }
-
-        transform: rotate(-0.05deg);
     }
 
     .text-wrapper {
@@ -73,6 +84,11 @@
             color: #444; 
             text-shadow: none;
             letter-spacing: 0.01em;
+
+            @media (max-width: 768px) {
+                font-size: 1rem; // Scale down for mobile
+                line-height: 1.5;
+            }
         }
         
         h1 {
@@ -83,6 +99,10 @@
             color: #333;
             text-shadow: none;
             letter-spacing: 0.03em;
+
+            @media (max-width: 768px) {
+                font-size: 1.8rem; // Scale down for mobile
+            }
         }
 
         .poem-date {
@@ -93,6 +113,11 @@
             text-align: center;
             font-family: 'Courier Prime', monospace;
             opacity: 0.6;
+
+            @media (max-width: 768px) {
+                margin-bottom: 2rem;
+                font-size: 0.8rem;
+            }
         }
     }
 
@@ -102,6 +127,11 @@
         flex-direction: row;
         justify-content: center;
         gap: 1.5rem;
+
+        @media (max-width: 768px) {
+            gap: 1rem;
+            margin-top: 1rem;
+        }
         
         .bookmark-container {
             position: relative;
@@ -121,6 +151,16 @@
             min-width: 220px;
             margin-bottom: 1rem;
 
+            @media (max-width: 768px) {
+                position: fixed;
+                bottom: 20%;
+                left: 10%;
+                right: 10%;
+                width: 80%;
+                transform: none;
+                margin: 0;
+            }
+
             h4 {
                 margin: 0 0 0.75rem 0;
                 font-size: 0.8rem;
@@ -139,10 +179,10 @@
                 width: 100%;
                 background: none;
                 border: none;
-                padding: 0.6rem; // Slightly more padding
+                padding: 0.6rem; 
                 font-family: inherit;
-                font-size: 0.95rem; // Slightly larger text
-                color: #555; // Darker text
+                font-size: 0.95rem; 
+                color: #555; 
                 cursor: pointer;
                 border-radius: 2px;
                 text-align: left;
@@ -159,7 +199,7 @@
                     border-bottom: 1px solid #f0ebd8;
                     margin-bottom: 0.5rem;
                     padding-bottom: 0.75rem;
-                    color: #333; // More prominent
+                    color: #333; 
                     font-weight: bold;
                     
                     svg { color: #333; }
@@ -170,18 +210,25 @@
 
         button.shareButton {
             margin-top: 3.5rem;
-            font-size: 1.3rem; // Larger icons
+            font-size: 1.3rem; 
             background-color: transparent;
-            border: 1px solid rgba(0,0,0,0.15); // Darker border
+            border: 1px solid rgba(0,0,0,0.15); 
             border-radius: 50%;
-            width: 48px; // Slightly larger button
+            width: 48px; 
             height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777; // Darker color
+            color: #777; 
             cursor: pointer;
             transition: all 0.2s;
+
+            @media (max-width: 768px) {
+                margin-top: 2rem;
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
 
             &:hover {
                 border-color: #444;
