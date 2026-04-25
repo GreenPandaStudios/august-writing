@@ -3,37 +3,271 @@
 @import "./searchBar";
 
 html {
-    background-color: #060607;
-    font-family: "Calibri", sans-serif;
-    max-width: 800px;
-    margin: auto;
+    background-color: #f5f2e0; 
+    color: #444; 
+    font-family: 'Georgia', 'Garamond', serif;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    background-color: #f5f2e0;
+    margin: 0;
+    overflow-x: hidden;
+    position: relative;
+}
 
-
-.row {
+.app-layout {
     display: flex;
-    flex-direction: row;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
-.col {
-    width: 50%;
+.sidebar-toggle {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #444;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fdfcf0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    &:hover {
+        background: #f0ebd8;
+        border-color: #333;
+        color: #000;
+    }
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(1px);
+    z-index: 20;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 340px;
+    height: 100vh;
+    background: #fdfcf0;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem; // Reduced padding
+    box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+    box-sizing: border-box;
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem; // Reduced margin
+        flex-shrink: 0;
+        
+        h2 {
+            font-size: 1.3rem; // Slightly smaller
+            margin: 0;
+            font-weight: normal;
+            font-variant: small-caps;
+            display: flex;
+            align-items: center;
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            &:hover { color: #333; }
+        }
+    }
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.page-navigation-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    gap: 1rem;
+    position: relative;
+}
+
+.page-nav-button {
+    background: transparent;
+    border: none;
+    font-size: 3rem;
+    color: rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    
+    &:hover:not(.disabled) {
+        color: rgba(0,0,0,0.8);
+        transform: scale(1.1);
+    }
+    
+    &.disabled {
+        opacity: 0;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &.prev {
+        margin-right: auto;
+    }
+    &.next {
+        margin-left: auto;
+    }
+}
+
+.poem-view-outer {
+    max-width: 650px;
+    width: 100%;
+    margin: 0;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+// Compact Collection Manager
+.collection-manager {
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+    max-height: 40%; // Limit height
     display: flex;
     flex-direction: column;
 }
 
-a {
-    font-family: "Calibri", sans-serif;
-    text-align: center;
-    color: greenyellow;
-    margin: auto;
-    margin-bottom:3rem;
-    margin-top:3rem;
-    font-size: 24px;
+.section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    font-weight: bold;
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
-    color: transparent;
+.collections-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    overflow-y: auto; // Scrollable collections
+    padding-right: 0.5rem;
+
+    // Custom Scrollbar for collections list
+    &::-webkit-scrollbar { width: 3px; }
+    &::-webkit-scrollbar-thumb { background: #e0d9c0; border-radius: 2px; }
+
+    .collection-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        
+        button {
+            text-align: left;
+            flex: 1;
+            padding: 0.35rem 0.6rem; // More compact
+            font-size: 0.85rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: #bbb;
+            cursor: pointer;
+            padding: 0.35rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            
+            &:hover { color: #222; background: #f0ebd8; }
+            &.delete:hover { color: #b33; background: #fce8e8; }
+        }
+    }
+
+    button {
+        background: transparent;
+        border: 1px solid #e0d9c0;
+        padding: 0.35rem 0.6rem;
+        font-family: inherit;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border-radius: 2px;
+        color: #666;
+
+        &:hover {
+            background: #f0ebd8;
+            border-color: #aaa;
+        }
+
+        &.active {
+            border-color: #333;
+            color: #000;
+            background: #f0ebd8;
+            font-weight: bold;
+        }
+    }
+
+    .create-col-btn {
+        margin-top: 0.5rem;
+        border-style: dashed;
+        border-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.2rem;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+}
+
+.collection-description {
+    font-size: 0.85rem; // Smaller
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    border-left: 2px solid #666;
+    padding-left: 1rem;
+    font-family: 'Garamond', serif;
+    flex-shrink: 0;
 }
